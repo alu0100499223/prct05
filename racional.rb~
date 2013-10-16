@@ -3,23 +3,45 @@
 require "./gcd.rb"
 
 class Fraccion
-    def to_s
-      
-    end
-    
-    def suma x, y
-      puts x + y
-    end
- 
-    def resta x, y
-      puts x - y
-    end
-    
-    def producto x, y
-      puts x * y
-    end
-    
-    def división x, y
-      puts x / y
-    end
+  attr_reader :num, :den
+  
+  def initialize (num, den)
+    @num, @den = num, den
+  end
+  
+  def to_s
+    "#{@num}/#{@den}"
+  end
+  
+  def +(other)#suma
+    num = (@num * other.den) + (@den * other.num)
+    den = @den * other.den
+    sum = Fraccion.new(num, den)
+    sum
+  end
+  
+  def -(other)#resta
+    num = (@num * other.den) - (@den * other.num)
+    den = @den * other.den
+    res = Fraccion.new(num, den)
+    res
+  end
+  
+  def *(other)#multiplicación
+    num = (@num * other.den) * (@den * other.num)
+    den = @den * other.den
+    mul = Fraccion.new(num, den)
+    mul
+  end
+  
+  def div(other)#división
+    num = (@num * other.den) div (@den * other.num)
+    den = @den * other.den
+    di = Fraccion.new(num, den)
+    di
+  end
+  
 end
+
+#r1 = Fraccion.new(1, 2)
+#puts "r1 = #{r1}"
